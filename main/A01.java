@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class A01 {
 
     public static void main(String args[]) {
@@ -25,10 +27,6 @@ public class A01 {
 
                     Snackbar.make(v, "入力欄が空白です。「担当コード」を入力してください。", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-
-                    // 効果音 mp3a を 鳴らす
-                    soundPool.play(mp3a, 1f, 1f, 0, 0, 1f);
-
                 }
 
                 /**

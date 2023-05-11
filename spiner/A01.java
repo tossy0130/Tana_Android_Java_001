@@ -4,6 +4,8 @@ package spiner;
 // ============ SQL のデータ抽出して、Spinnerを作成する  Android
 // ===================================================
 
+import java.util.*;
+
 class A01 {
 
     private ArrayList<String> Spinner_Item_Souko = new ArrayList<>();
