@@ -51,4 +51,42 @@ public class A02 {
                 .orElse(null);
     }
 
+     //------------------------------------ Send_db  個数　取得して　ID　に使用する ------------
+    private void ReadMax_num() {
+
+        /* ヘルパークラス　の準備 */
+        TestOpenHelper helper = new TestOpenHelper(getApplicationContext());
+        SQLiteDatabase Read_num_db = helper.getReadableDatabase();
+        /* ヘルパークラス　の準備 END */
+
+        int [] arr_item = new int[1];
+
+        try {
+            Cursor cursor = Read_num_db.rawQuery("select count(" + TestOpenHelper.SEND_DB_C_01 + ")" + "from Send_db", null);
+
+            if(cursor != null) {
+                do {
+                    // Send_db の id 用　カラム　取得
+
+                        // count(数　取得)
+                        int idx = cursor.getColumnIndex("send_db_01");
+                        arr_item[0] = cursor.getInt(idx);
+
+                        max_data_view.setText(String.valueOf(arr_item[0]));
+
+                } while (cursor.moveToNext()); // ----------- while
+
+            } else {
+                int i = 1;
+                max_data_view.setText(String.valueOf(i));
+            }
+
+        } finally {
+            // データベース　オブジェクト
+            Read_num_db.close();
+        }
+
+    }
+    //------------------------------------ Send_db  個数　取得して　ID　に使用する END ------------>
+
 }
