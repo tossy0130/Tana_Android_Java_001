@@ -48,3 +48,25 @@ SELECT * FROM SHMF_table
 	left outer join RZMF_table on SHMF_table.SHMF_c_01 = RZMF_table.RZMF_c_01
 	left outer join SOMF_table on SOMF_table.SOMF_c_01 = RZMF_table.RZMF_c_02
 	WHERE SHMF_table.SHMF_c_03 = '4905980368101';
+
+
+/* ====== バーコード 検索 ====== */
+/* SHMF_c_01:商品C、SHMF_c_02:品名、SHMF_c_03:JANコード、SHMF_c_04:品番、SHMF_c_05:入数 */
+/* RZMF_c_01:商品C、RZMF_c_02:倉庫C、RZMF_c_03:棚番 */
+/* SOMF_c_01:倉庫C、SOMF_c_02:倉庫名　、SOMF_c_03 text：棚卸日 */
+SELECT SHMF_c_01, SHMF_c_02, SHMF_c_03, SHMF_c_04,SHMF_c_05,RZMF_c_02,RZMF_c_03,SOMF_c_02,SOMF_c_03 FROM SHMF_table
+	left outer join RZMF_table on SHMF_table.SHMF_c_01 = RZMF_table.RZMF_c_01
+	left outer join SOMF_table on SOMF_table.SOMF_c_01 = RZMF_table.RZMF_c_02
+	WHERE SHMF_table.SHMF_c_03 = '4960778000472';
+
+/* ====== QR コード （商品コード検索） ====== */
+SELECT SHMF_c_01, SHMF_c_02, SHMF_c_03, SHMF_c_04,SHMF_c_05,RZMF_c_02,RZMF_c_03,SOMF_c_02,SOMF_c_03 FROM SHMF_table
+	left outer join RZMF_table on SHMF_table.SHMF_c_01 = RZMF_table.RZMF_c_01
+	left outer join SOMF_table on SOMF_table.SOMF_c_01 = RZMF_table.RZMF_c_02
+	WHERE SHMF_table.SHMF_c_01 = '0110083';
+
+
+/* 重複した値を取り除く */
+SELECT DISTINCT RZMF_c_03 FROM RZMF_table;
+
+select RZMF_c_03, COUNT(RZMF_c_03) AS r_c From RZMF_table group by RZMF_c_03 HAVING r_c > 1;
