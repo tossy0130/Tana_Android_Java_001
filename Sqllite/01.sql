@@ -70,3 +70,17 @@ SELECT SHMF_c_01, SHMF_c_02, SHMF_c_03, SHMF_c_04,SHMF_c_05,RZMF_c_02,RZMF_c_03,
 SELECT DISTINCT RZMF_c_03 FROM RZMF_table;
 
 select RZMF_c_03, COUNT(RZMF_c_03) AS r_c From RZMF_table group by RZMF_c_03 HAVING r_c > 1;
+
+
+/* NULL じゃないカラム抽出 */
+SELECT * FROM RZMF_table WHERE RZMF_c_03 IS NOT NULL;
+
+/* 空じゃない カラム */
+SELECT * FROM RZMF_table WHERE RZMF_c_03 <> '';
+
+/* 空の カラム */
+SELECT * from RZMF_table WHERE RZMF_c_03 = '';
+
+/* === 出荷指示がない倉庫は、リストにしない === */
+SELECT * from SOMF_table;
+SELECT SOMF_c_01, SOMF_c_02 from SOMF_table WHERE SOMF_c_03 <> '';
