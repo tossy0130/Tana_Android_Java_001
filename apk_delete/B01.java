@@ -9,7 +9,7 @@ public class B01 {
     public static void main(String args[]) {
 
         /**
-         * ================== パーミッションリクエスト ====================
+         * ================== Android 10 以上  パーミッションリクエスト ====================
          */
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (Environment.isExternalStorageManager()) {
